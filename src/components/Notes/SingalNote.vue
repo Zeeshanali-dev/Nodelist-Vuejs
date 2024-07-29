@@ -11,14 +11,14 @@
                 :to="{ name: 'editNote', params: { id: note.id } }">Edit</router-link>
             <button class="px-6 py-4 block w-full" @click.prevent="handleDeleteClick">Delete</button>
         </div>
-        <DeleteNote v-if="modals.deleteModal" />
+
     </div>
 </template>
 
 <script setup>
 import { computed, reactive } from "vue";
 import { useNoteStore } from '../../Stores/NoteStore';
-import DeleteNote from './DeleteNote.vue'
+
 const props = defineProps({
     note: {
         type: Object,
@@ -34,11 +34,9 @@ const characterLength = computed(() => {
 });
 
 const handleDeleteClick = () => {
-    modals.deleteModal = true
-    // notesStore.deleteNote(props.note.id);
+
+    notesStore.deleteNote(props.note.id);
 };
 
-const modals = reactive({
-    deleteModal: false
-})
+
 </script>
